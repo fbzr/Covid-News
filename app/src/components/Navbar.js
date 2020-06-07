@@ -48,7 +48,7 @@ const Navbar = ({ navHeihgt }) => {
                         COVID News
                     </Box>
                 </Typography>
-                <Button className={classes.headlinesButton} onClick={() => dispatch(fetchTopHeadlines())}>Top Headlines</Button>
+                {/* <Button className={classes.headlinesButton} onClick={() => dispatch(fetchTopHeadlines())}>Top Headlines</Button> */}
             </Toolbar>
         </AppBar>
     )

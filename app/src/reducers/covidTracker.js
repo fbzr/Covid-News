@@ -1,4 +1,4 @@
-import { FETCH_DATA, LOADING_ERROR, UPDATE_COUNTRY, TOGGLE_MOBILE, FETCH_TOP_HEADLINES } from '../actions/types';
+import { FETCH_COVID_DATA, FETCH_NEWS_DATA, LOADING_ERROR, UPDATE_COUNTRY, TOGGLE_MOBILE, FETCH_TOP_HEADLINES } from '../actions/types';
 
 const initialState = {
     loadingCovidData: true,
@@ -26,19 +26,25 @@ export default (state=initialState, action) => {
                     news: null
                 }
             };
-        case FETCH_DATA:
+        case FETCH_COVID_DATA:
             return {
                 ...state,
                 loading: false,
                 error: '',
-                data: payload.data,
-                news: payload?.news
+                data: payload.data
+            };
+        case FETCH_NEWS_DATA:
+            return {
+                ...state,
+                loading: false,
+                error: '',
+                news: payload.news
             };
         case UPDATE_COUNTRY:
             return {
                 ...state,
                 countryData: payload.countryData,
-                news: payload?.news,
+                news: payload.news || state.news,
                 mobileOpen: false
             };
         case TOGGLE_MOBILE:

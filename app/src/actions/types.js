@@ -1,4 +1,5 @@
-export const FETCH_DATA = 'FETCH_DATA';
+export const FETCH_COVID_DATA = 'FETCH_COVID_DATA';
+export const FETCH_NEWS_DATA = 'FETCH_NEWS_DATA';
 export const LOADING_ERROR = 'LOADING_ERROR';
 export const UPDATE_COUNTRY = 'UPDATE_COUNTRY';
 export const TOGGLE_MOBILE = 'TOGGLE_MOBILE';
