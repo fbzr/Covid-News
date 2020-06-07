@@ -48,9 +48,9 @@ const Map = ({ data, setToolTipContent }) => {
             if(!d) {
               d = data.find(countryData => countryData.Country === missingGeoMamesList[geo.properties.ISO_A3]);
             }
-            if(!d) {
+            {/* if(!d) {
               console.log('Missing country: ', geo.properties.NAME, geo.properties.ISO_A3);
-            }
+            } */}
             return (
               <Geography
                 key={geo.rsmKey}

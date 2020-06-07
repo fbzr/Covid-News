@@ -33,7 +33,7 @@ const useStyles = makeStyles(theme => ({
         margin: `0 0 15px`
     },
     cardContent: {
-        padding: '1 !important'
+        paddingBottom: '8px !important'
     },
     image: {
         width: '20%',
@@ -44,31 +44,65 @@ const useStyles = makeStyles(theme => ({
     },
     subContentContainer: {
         display: 'flex'
+    },
+    creditAndDate: {
+        marginTop: theme.spacing(2),
+        [defaultTheme.breakpoints.down('sm')]: {
+            marginTop: theme.spacing(1),
+        },
+        display: 'flex',
+        flexDirection: 'column'
     }
 }));
 
+const getDateString = (date) => {
+    const dateFormat = new Date(date);
+    const month = dateFormat.getMonth() + 1;
+    const day = dateFormat.getDate();
+    const year = dateFormat.getFullYear();
+    return `${(month < 10 && '0') + month}/${day < 10 && '0' + day}/${year}`;
+}
+
 const NewsCard = ({ article }) => {
     const {
+        title,
+        abstract,
+        url,
+        byline,
+        multimedia,
+        source,
+        published_date
+    } = article;
+
+    const imageUrl = multimedia ? multimedia[1]?.url || multimedia[0]?.url : null;
+
+    const {
         card,
+        cardContent,
         image,
         articleDescrition,
         subContentContainer,
+        creditAndDate
     } = useStyles();
 
     return (
         <ThemeProvider theme={cardTheme}>
-        <Link href={article.url} target='_blank'>
+        <Link href={url} target='_blank'>
             <Card className={card}>
-                { article.urlToImage ? 
-                <CardMedia className={image} image={article.urlToImage} title={article.title} />
+                { imageUrl ? 
+                <CardMedia className={image} image={imageUrl} title={title} />
                 : <div className={image}></div> }
-                <CardContent>
-                    <CardHeader style={{padding: '0'}} title={article.title} />
+                <CardContent className={cardContent}>
+                    <CardHeader style={{padding: '0'}} title={title} />
                     <Hidden smDown>
                         <div className={subContentContainer}>
-                            <Typography className={articleDescrition} variant='body2' >{article.description}</Typography>
+                            <Typography className={articleDescrition} variant='body2' >{abstract}</Typography>
                         </div>
                     </Hidden>
+                    <div className={creditAndDate}>
+                        <Typography variant='caption'>{getDateString(published_date)}</Typography>
+                        <Typography variant='caption'>{`${byline && byline + ' - '}${source}`}</Typography>
+                    </div>
                 </CardContent>            
             </Card>
         </Link>

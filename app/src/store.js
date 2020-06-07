@@ -3,12 +3,13 @@ import { createStore, applyMiddleware } from 'redux';
 import covidTrackerReducer from './reducers/covidTracker';
 import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
-import { fetchData } from './actions/covidTracker';
+import { fetchCovidData, fetchNewsData } from './actions/covidTracker';
 
 const store = createStore(covidTrackerReducer, composeWithDevTools(
     applyMiddleware(thunk)
 ));
 
-store.dispatch(fetchData());
+store.dispatch(fetchCovidData());
+store.dispatch(fetchNewsData());
 
 export default store;
