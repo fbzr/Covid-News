@@ -6,7 +6,7 @@ Website fetches data from two API's and provides news and information about the 
 
 > https://covid-news.herokuapp.com/
 
-#### Public API's used in this project (data source):
+#### Public API's used in this project (data sources):
 
 - https://covid19api.com/
 - https://developer.nytimes.com/
